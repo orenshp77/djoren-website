@@ -301,7 +301,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 8px;
 }
 
 .mobile-nav-links li {
@@ -318,11 +318,11 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-nav-links a {
     color: var(--white);
     text-decoration: none;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 700;
-    padding: 20px 60px;
+    padding: 12px 40px;
     display: block;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     border-radius: 50px;
     transition: all 0.3s ease;
 }

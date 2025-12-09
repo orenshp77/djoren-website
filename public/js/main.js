@@ -797,3 +797,121 @@ function initFloatingContact() {
 
 // Initialize floating contact on page load
 document.addEventListener('DOMContentLoaded', initFloatingContact);
+
+// ========================================
+// Accessibility Widget
+// ========================================
+function initAccessibility() {
+    const widget = document.querySelector('.accessibility-widget');
+    const btn = document.querySelector('.accessibility-btn');
+    const panel = document.querySelector('.accessibility-panel');
+    const options = document.querySelectorAll('.acc-option');
+    const resetBtn = document.querySelector('.acc-reset');
+
+    if (!widget || !btn || !panel) return;
+
+    // Toggle panel
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        panel.classList.toggle('active');
+    });
+
+    // Close panel when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!widget.contains(e.target)) {
+            panel.classList.remove('active');
+        }
+    });
+
+    // Load saved preferences
+    loadAccessibilityPrefs();
+
+    // Handle option clicks
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            const accType = this.getAttribute('data-acc');
+            const className = 'acc-' + accType;
+
+            // Toggle the class on body
+            document.body.classList.toggle(className);
+            this.classList.toggle('active');
+
+            // Save preferences
+            saveAccessibilityPrefs();
+        });
+    });
+
+    // Reset button
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            // Remove all accessibility classes
+            const accClasses = [
+                'acc-bigger-text',
+                'acc-high-contrast',
+                'acc-grayscale',
+                'acc-light-bg',
+                'acc-big-cursor',
+                'acc-highlight-links',
+                'acc-reading-line',
+                'acc-stop-animations'
+            ];
+
+            accClasses.forEach(cls => {
+                document.body.classList.remove(cls);
+            });
+
+            // Remove active state from options
+            options.forEach(opt => opt.classList.remove('active'));
+
+            // Clear saved preferences
+            localStorage.removeItem('accessibilityPrefs');
+        });
+    }
+
+    // Save preferences to localStorage
+    function saveAccessibilityPrefs() {
+        const prefs = {};
+        options.forEach(option => {
+            const accType = option.getAttribute('data-acc');
+            prefs[accType] = option.classList.contains('active');
+        });
+        localStorage.setItem('accessibilityPrefs', JSON.stringify(prefs));
+    }
+
+    // Load preferences from localStorage
+    function loadAccessibilityPrefs() {
+        const saved = localStorage.getItem('accessibilityPrefs');
+        if (saved) {
+            const prefs = JSON.parse(saved);
+            for (const [accType, isActive] of Object.entries(prefs)) {
+                if (isActive) {
+                    const className = 'acc-' + accType;
+                    document.body.classList.add(className);
+                    const option = document.querySelector(`[data-acc="${accType}"]`);
+                    if (option) option.classList.add('active');
+                }
+            }
+        }
+    }
+
+    // Handle reading line movement with mouse
+    document.addEventListener('mousemove', function(e) {
+        if (document.body.classList.contains('acc-reading-line')) {
+            const style = document.querySelector('#reading-line-style');
+            if (!style) {
+                const newStyle = document.createElement('style');
+                newStyle.id = 'reading-line-style';
+                document.head.appendChild(newStyle);
+            }
+            document.querySelector('#reading-line-style').textContent = `
+                body.acc-reading-line::after {
+                    top: ${e.clientY}px !important;
+                    transform: translateY(-50%);
+                }
+            `;
+        }
+    });
+}
+
+// Initialize accessibility on page load
+document.addEventListener('DOMContentLoaded', initAccessibility);

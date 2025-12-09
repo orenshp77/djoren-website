@@ -20,6 +20,139 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Accessibility Widget CSS -->
+    <style>
+    .accessibility-widget {
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
+        z-index: 99999;
+        font-family: 'Heebo', sans-serif;
+    }
+    .accessibility-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #FF6B00, #FF8C00);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        transition: all 0.3s ease;
+    }
+    .accessibility-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+    }
+    .accessibility-btn i {
+        color: white;
+        font-size: 24px;
+    }
+    .accessibility-panel {
+        position: absolute;
+        bottom: 60px;
+        left: 0;
+        background: #1a1a1a;
+        border-radius: 15px;
+        padding: 20px;
+        width: 280px;
+        display: none;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,107,0,0.3);
+    }
+    .accessibility-panel.active {
+        display: block;
+        animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .accessibility-panel h3 {
+        color: #FF6B00;
+        margin: 0 0 15px 0;
+        font-size: 18px;
+        text-align: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255,107,0,0.3);
+    }
+    .acc-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        margin: 5px 0;
+        background: rgba(255,255,255,0.05);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .acc-option:hover {
+        background: rgba(255,107,0,0.2);
+    }
+    .acc-option.active {
+        background: rgba(255,107,0,0.3);
+        border: 1px solid #FF6B00;
+    }
+    .acc-option span {
+        color: white;
+        font-size: 14px;
+    }
+    .acc-option i {
+        color: #FF6B00;
+        font-size: 18px;
+        width: 25px;
+    }
+    .acc-reset {
+        width: 100%;
+        padding: 10px;
+        margin-top: 15px;
+        background: transparent;
+        border: 1px solid #FF6B00;
+        color: #FF6B00;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: 'Heebo', sans-serif;
+        transition: all 0.2s ease;
+    }
+    .acc-reset:hover {
+        background: #FF6B00;
+        color: white;
+    }
+    /* Accessibility Styles */
+    body.acc-bigger-text { font-size: 120% !important; }
+    body.acc-bigger-text * { font-size: inherit !important; }
+    body.acc-high-contrast { filter: contrast(1.5) !important; }
+    body.acc-grayscale { filter: grayscale(1) !important; }
+    body.acc-light-bg { background: #fff !important; }
+    body.acc-light-bg * { background: #fff !important; color: #000 !important; }
+    body.acc-big-cursor, body.acc-big-cursor * { cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="%23000" stroke="%23fff" stroke-width="1" d="M5 3l14 9-7 2-4 7z"/></svg>'), auto !important; }
+    body.acc-highlight-links a { background: yellow !important; color: black !important; padding: 2px 4px !important; }
+    body.acc-reading-line::after {
+        content: '';
+        position: fixed;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: rgba(255,255,0,0.2);
+        pointer-events: none;
+        z-index: 99998;
+        transform: translateY(-50%);
+    }
+    body.acc-stop-animations * {
+        animation: none !important;
+        transition: none !important;
+    }
+    @media (max-width: 768px) {
+        .accessibility-widget { left: 10px; bottom: 80px; }
+        .accessibility-btn { width: 45px; height: 45px; }
+        .accessibility-panel { width: 260px; }
+    }
+    </style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -96,6 +229,51 @@
                 <a href="https://wa.me/972523715599?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" class="mobile-social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
             </li>
         </ul>
+    </div>
+
+    <!-- Accessibility Widget -->
+    <div class="accessibility-widget">
+        <button class="accessibility-btn" aria-label="הגדרות נגישות" title="נגישות">
+            <i class="fas fa-universal-access"></i>
+        </button>
+        <div class="accessibility-panel">
+            <h3><i class="fas fa-universal-access"></i> הגדרות נגישות</h3>
+            <div class="acc-option" data-acc="bigger-text">
+                <i class="fas fa-text-height"></i>
+                <span>הגדלת טקסט</span>
+            </div>
+            <div class="acc-option" data-acc="high-contrast">
+                <i class="fas fa-adjust"></i>
+                <span>ניגודיות גבוהה</span>
+            </div>
+            <div class="acc-option" data-acc="grayscale">
+                <i class="fas fa-palette"></i>
+                <span>גווני אפור</span>
+            </div>
+            <div class="acc-option" data-acc="light-bg">
+                <i class="fas fa-sun"></i>
+                <span>רקע בהיר</span>
+            </div>
+            <div class="acc-option" data-acc="big-cursor">
+                <i class="fas fa-mouse-pointer"></i>
+                <span>סמן גדול</span>
+            </div>
+            <div class="acc-option" data-acc="highlight-links">
+                <i class="fas fa-link"></i>
+                <span>הדגשת קישורים</span>
+            </div>
+            <div class="acc-option" data-acc="reading-line">
+                <i class="fas fa-grip-lines"></i>
+                <span>קו קריאה</span>
+            </div>
+            <div class="acc-option" data-acc="stop-animations">
+                <i class="fas fa-stop-circle"></i>
+                <span>עצירת אנימציות</span>
+            </div>
+            <button class="acc-reset">
+                <i class="fas fa-redo"></i> איפוס הגדרות
+            </button>
+        </div>
     </div>
 
     <!-- Floating Contact Button -->

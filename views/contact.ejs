@@ -1,0 +1,243 @@
+<%- include('partials/header') %>
+
+<!-- Page Hero -->
+<section class="header" style="height: 50vh; min-height: 350px;">
+    <div class="video-background">
+        <iframe
+            src="https://www.youtube.com/embed/3Fx2srlPyWU?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&playlist=3Fx2srlPyWU&playsinline=1&enablejsapi=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+        ></iframe>
+    </div>
+    <div class="video-overlay"></div>
+
+    <div class="hero-content">
+        <h1 class="hero-title" style="font-size: 60px;">צרו קשר</h1>
+        <p class="hero-subtitle">בואו נדבר על האירוע שלכם</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section section-dark">
+    <div class="contact-container">
+        <!-- Contact Info -->
+        <div class="contact-info slide-in-right">
+            <h3>בואו נדבר!</h3>
+            <p>
+                יש לכם שאלות? רוצים לשמוע עוד על השירותים שלי? או אולי כבר מוכנים להזמין?
+                אני כאן בשבילכם. מלאו את הפרטים או צרו קשר ישירות - אשמח לחזור אליכם בהקדם.
+            </p>
+
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>טלפון</h4>
+                        <span>052-371-5599</span>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>אימייל</h4>
+                        <span>orenshp77@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>וואטסאפ</h4>
+                        <span>052-371-5599</span>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>מיקום</h4>
+                        <span>אח"י אילת 15, חיפה (ק.חיים)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.facebook.com/djorenshpaizer" target="_blank" class="social-link" title="פייסבוק">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/oren_sheferr" target="_blank" class="social-link" title="אינסטגרם">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form id="contact-form" class="contact-form slide-in-left" action="https://formspree.io/f/xkgdvaay" method="POST">
+            <h3 style="color: var(--primary-orange); margin-bottom: 30px; font-size: 28px;">
+                <i class="fas fa-paper-plane"></i> שלחו הודעה
+            </h3>
+
+            <div class="form-group">
+                <label for="name">שם מלא *</label>
+                <input type="text" id="name" name="name" placeholder="הכניסו את השם שלכם" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">טלפון *</label>
+                <input type="tel" id="phone" name="phone" placeholder="050-000-0000" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">אימייל</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="event-type">סוג האירוע</label>
+                <select id="event-type" name="event-type" style="width: 100%; padding: 18px 25px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 107, 0, 0.2); border-radius: 15px; color: var(--white); font-size: 16px; font-family: 'Heebo', sans-serif; cursor: pointer;">
+                    <option value="" style="background: #1a1a1a;">בחרו סוג אירוע</option>
+                    <option value="wedding" style="background: #1a1a1a;">חתונה</option>
+                    <option value="party" style="background: #1a1a1a;">מסיבות ענק והפקות</option>
+                    <option value="corporate" style="background: #1a1a1a;">אירוע חברה</option>
+                    <option value="private" style="background: #1a1a1a;">מסיבה פרטית</option>
+                    <option value="other" style="background: #1a1a1a;">אחר</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date">תאריך משוער</label>
+                <input type="date" id="date" name="date" style="color-scheme: dark;">
+            </div>
+
+            <div class="form-group">
+                <label for="message">ספרו לי על האירוע</label>
+                <textarea id="message" name="message" placeholder="מתי, איפה, כמה אורחים, ומה חשוב לכם במיוחד..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i>
+                שלחו הודעה
+            </button>
+
+            <p style="text-align: center; margin-top: 20px; color: rgba(255,255,255,0.5); font-size: 14px;">
+                * אחזור אליכם תוך 24 שעות
+            </p>
+        </form>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section section-gradient">
+    <h2 class="section-title fade-in"><span>שאלות נפוצות</span></h2>
+
+    <div style="max-width: 900px; margin: 0 auto;">
+        <div class="event-card fade-in" style="margin-bottom: 20px;">
+            <div class="event-content" style="padding: 30px;">
+                <h4 style="color: var(--primary-orange); margin-bottom: 15px; font-size: 20px;">
+                    <i class="fas fa-question-circle"></i> כמה זמן מראש צריך להזמין?
+                </h4>
+                <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">
+                    מומלץ להזמין כמה שיותר מוקדם, במיוחד לתאריכים פופולריים כמו סופי שבוע בעונת החתונות.
+                    באופן כללי, 2-3 חודשים מראש זה אידיאלי, אבל תמיד שווה לבדוק זמינות גם ברגע האחרון.
+                </p>
+            </div>
+        </div>
+
+        <div class="event-card fade-in" style="margin-bottom: 20px;">
+            <div class="event-content" style="padding: 30px;">
+                <h4 style="color: var(--primary-orange); margin-bottom: 15px; font-size: 20px;">
+                    <i class="fas fa-question-circle"></i> האם אפשר לבקש שירים מסוימים?
+                </h4>
+                <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">
+                    בהחלט! אני אשמח לקבל רשימת שירים חובה ושירים שאתם לא רוצים לשמוע.
+                    בפגישת התיאום נבנה יחד את הפלייליסט המושלם לאירוע שלכם.
+                </p>
+            </div>
+        </div>
+
+        <div class="event-card fade-in" style="margin-bottom: 20px;">
+            <div class="event-content" style="padding: 30px;">
+                <h4 style="color: var(--primary-orange); margin-bottom: 15px; font-size: 20px;">
+                    <i class="fas fa-question-circle"></i> מה כולל המחיר?
+                </h4>
+                <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">
+                    המחיר משתנה בהתאם לחבילה שתבחרו. כל חבילה כוללת DJ מקצועי, ציוד סאונד ותאורה.
+                    צרו קשר לקבלת הצעת מחיר מותאמת אישית לאירוע שלכם.
+                </p>
+            </div>
+        </div>
+
+        <div class="event-card fade-in" style="margin-bottom: 20px;">
+            <div class="event-content" style="padding: 30px;">
+                <h4 style="color: var(--primary-orange); margin-bottom: 15px; font-size: 20px;">
+                    <i class="fas fa-question-circle"></i> האם מגיעים לכל הארץ?
+                </h4>
+                <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">
+                    כן! אני מגיע לאירועים בכל רחבי הארץ - מצפון ועד דרום. לאירועים מחוץ לאזור
+                    המרכז עשויה להתווסף עלות נסיעה סמלית.
+                </p>
+            </div>
+        </div>
+
+        <div class="event-card fade-in">
+            <div class="event-content" style="padding: 30px;">
+                <h4 style="color: var(--primary-orange); margin-bottom: 15px; font-size: 20px;">
+                    <i class="fas fa-question-circle"></i> האם יש אפשרות לראות הופעה לפני ההזמנה?
+                </h4>
+                <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">
+                    בהחלט! אפשר לתאם להגיע לאירוע קרוב (בתיאום מראש) או לצפות בסרטונים מאירועים קודמים.
+                    עקבו אחריי ברשתות החברתיות לעדכונים שוטפים.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Contact Buttons for Mobile -->
+<section class="section section-dark" style="text-align: center; padding: 60px 20px;">
+    <h3 class="fade-in" style="font-size: 28px; margin-bottom: 30px;">
+        מעדיפים לדבר? <span style="color: var(--primary-orange);">התקשרו עכשיו!</span>
+    </h3>
+
+    <div style="display: flex; flex-direction: column; gap: 20px; max-width: 400px; margin: 0 auto;">
+        <a href="tel:0523715599" class="btn btn-primary btn-mobile-large fade-in" style="width: 100%;">
+            <i class="fas fa-phone"></i>
+            התקשרו עכשיו
+        </a>
+
+        <a href="https://wa.me/972523715599" class="btn btn-mobile-large fade-in" style="width: 100%; background: #25D366; color: white; border: none;">
+            <i class="fab fa-whatsapp"></i>
+            שלחו וואטסאפ
+        </a>
+
+        <a href="#contact-form" class="btn btn-secondary btn-mobile-large fade-in" style="width: 100%;">
+            <i class="fas fa-envelope"></i>
+            שלחו הודעה
+        </a>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section style="height: 400px; position: relative; z-index: 10;">
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3351.8!2d35.0!3d32.82!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDQ5JzEyLjAiTiAzNcKwMDAnMDAuMCJF!5e0!3m2!1siw!2sil!4v1640000000000!5m2!1siw!2sil"
+        width="100%"
+        height="100%"
+        style="border:0; filter: grayscale(100%) invert(90%);"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+</section>
+
+<%- include('partials/footer') %>

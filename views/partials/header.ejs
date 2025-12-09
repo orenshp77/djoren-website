@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DJ OREN SHAFFER - DJ מקצועי לאירועים, חתונות ומסיבות. חווית מוזיקה בלתי נשכחת">
+    <meta name="keywords" content="DJ, דיג'יי, אירועים, חתונות, מסיבות, מוזיקה, אורן שפר">
+    <title><%= title %></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/LOGO.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-content">
+            <img src="/images/LOGO.png" alt="DJ Oren Shaffer" class="loader-logo">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Animated Background Elements -->
+    <div class="particles-container"></div>
+    <div class="floating-shapes"></div>
+    <div class="disco-effect"></div>
+    <div class="sound-waves"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="/">
+            <img src="/images/LOGO.png" alt="DJ Oren Shaffer" class="logo">
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="/" class="<%= page === 'home' ? 'active' : '' %>">דף הבית</a></li>
+            <li><a href="/about" class="<%= page === 'about' ? 'active' : '' %>">אודות</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle <%= ['weddings', 'parties', 'corporate'].includes(page) ? 'active' : '' %>">
+                    השירותים שלי <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/weddings" class="<%= page === 'weddings' ? 'active' : '' %>">חתונות</a></li>
+                    <li><a href="/parties" class="<%= page === 'parties' ? 'active' : '' %>">מסיבות ענק והפקות</a></li>
+                    <li><a href="/corporate" class="<%= page === 'corporate' ? 'active' : '' %>">אירועי חברה</a></li>
+                </ul>
+            </li>
+            <li><a href="/music-production" class="<%= page === 'music-production' ? 'active' : '' %>">יצירת מוזיקה</a></li>
+            <li><a href="/events" class="<%= page === 'events' ? 'active' : '' %>">אירועים</a></li>
+            <li><a href="/contact" class="<%= page === 'contact' ? 'active' : '' %>">צור קשר</a></li>
+            <li class="nav-social-icons">
+                <a href="https://www.facebook.com/djorenshpaizer" target="_blank" class="nav-social-btn facebook" title="פייסבוק"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/oren_sheferr" target="_blank" class="nav-social-btn instagram" title="אינסטגרם"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/972523715599?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" class="nav-social-btn whatsapp" title="וואטסאפ"><i class="fab fa-whatsapp"></i></a>
+            </li>
+        </ul>
+
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li style="transition-delay: 0.1s"><a href="/" class="<%= page === 'home' ? 'active' : '' %>">דף הבית</a></li>
+            <li style="transition-delay: 0.2s"><a href="/about" class="<%= page === 'about' ? 'active' : '' %>">אודות</a></li>
+            <li class="mobile-dropdown" style="transition-delay: 0.3s">
+                <a href="#" class="mobile-dropdown-toggle <%= ['weddings', 'parties', 'corporate'].includes(page) ? 'active' : '' %>">
+                    השירותים שלי <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="/weddings" class="<%= page === 'weddings' ? 'active' : '' %>">חתונות</a></li>
+                    <li><a href="/parties" class="<%= page === 'parties' ? 'active' : '' %>">מסיבות ענק והפקות</a></li>
+                    <li><a href="/corporate" class="<%= page === 'corporate' ? 'active' : '' %>">אירועי חברה</a></li>
+                </ul>
+            </li>
+            <li style="transition-delay: 0.4s"><a href="/music-production" class="<%= page === 'music-production' ? 'active' : '' %>">יצירת מוזיקה</a></li>
+            <li style="transition-delay: 0.5s"><a href="/events" class="<%= page === 'events' ? 'active' : '' %>">אירועים</a></li>
+            <li style="transition-delay: 0.6s"><a href="/contact" class="<%= page === 'contact' ? 'active' : '' %>">צור קשר</a></li>
+            <li class="mobile-social-icons" style="transition-delay: 0.7s">
+                <a href="https://www.facebook.com/djorenshpaizer" target="_blank" class="mobile-social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/oren_sheferr" target="_blank" class="mobile-social-btn instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/972523715599?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" class="mobile-social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Floating Contact Button -->
+    <div class="floating-contact">
+        <button class="floating-contact-btn" aria-label="צרו קשר">
+            <i class="fas fa-comment-dots"></i>
+            <span>צרו קשר</span>
+        </button>
+        <div class="floating-contact-menu">
+            <a href="tel:0523715599" class="floating-menu-item call">
+                <i class="fas fa-phone"></i>
+                <span>חייגו אלי</span>
+            </a>
+            <a href="https://wa.me/972523715599?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" class="floating-menu-item whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                <span>וואטסאפ</span>
+            </a>
+            <a href="/contact" class="floating-menu-item message">
+                <i class="fas fa-envelope"></i>
+                <span>הודעה</span>
+            </a>
+        </div>
+    </div>

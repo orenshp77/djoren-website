@@ -1,0 +1,13 @@
+node_modules/
+*.mov
+*.mp4
+*.avi
+.env
+.DS_Store
+Thumbs.db
+*.log
+web_image/
+DEPLOYMENT.txt
+.htaccess
+*.zip
+.claude/

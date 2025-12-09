@@ -1513,7 +1513,26 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .footer-content {
+        grid-template-columns: 1fr;
         gap: 30px;
+        text-align: center;
+    }
+
+    .footer-section {
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-section:last-child {
+        border-bottom: none;
+    }
+
+    .footer-section a:hover {
+        padding-right: 0;
+    }
+
+    .footer-logo {
+        margin: 0 auto 20px;
     }
 
     /* Mobile Big Buttons */

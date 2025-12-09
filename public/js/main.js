@@ -362,25 +362,49 @@ function initContactForm() {
 
         // Get form data
         const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
+        const btn = document.querySelector('.submit-btn');
 
-        // Show success animation
-        showFormSuccess();
+        // Show loading state
+        btn.textContent = 'שולח...';
+        btn.disabled = true;
 
-        // Reset form
-        form.reset();
+        // Send to Formspree
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                showFormSuccess();
+                form.reset();
+            } else {
+                throw new Error('Form submission failed');
+            }
+        })
+        .catch(error => {
+            btn.textContent = 'שגיאה - נסו שוב';
+            btn.style.background = '#dc3545';
+            setTimeout(function() {
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> שלחו הודעה';
+                btn.style.background = '';
+                btn.disabled = false;
+            }, 3000);
+        });
     });
 }
 
 function showFormSuccess() {
     const btn = document.querySelector('.submit-btn');
-    const originalText = btn.textContent;
 
-    btn.textContent = '✓ נשלח בהצלחה!';
+    btn.innerHTML = '✓ נשלח בהצלחה!';
     btn.style.background = '#28a745';
+    btn.disabled = false;
 
     setTimeout(function() {
-        btn.textContent = originalText;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> שלחו הודעה';
         btn.style.background = '';
     }, 3000);
 }

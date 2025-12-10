@@ -349,6 +349,132 @@
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
 
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 107, 0, 0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 10001;
+            transition: all 0.3s ease;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            color: #FF6B00;
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            z-index: 10001;
+            transition: all 0.3s ease;
+            background: rgba(0,0,0,0.5);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-nav:hover {
+            color: #FF6B00;
+            background: rgba(0,0,0,0.8);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+
+        .gallery-item {
+            cursor: pointer;
+        }
+
+        .gallery-item::after {
+            content: '\f00e';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 40px;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .hero {
@@ -374,6 +500,20 @@
                 width: 100%;
                 max-width: 350px;
                 justify-content: center;
+            }
+
+            .lightbox-nav {
+                font-size: 30px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
             }
         }
     </style>
@@ -474,35 +614,48 @@
         <h2 class="section-title">הציוד וה<span>אווירה</span> שלנו</h2>
 
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600" alt="הגברה ותאורה לאירועים">
+            <div class="gallery-item" onclick="openLightbox(0)">
+                <img src="/images/lights-(1).jpg" alt="תאורת אירועים מקצועית">
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600" alt="תאורת אירועים">
+            <div class="gallery-item" onclick="openLightbox(1)">
+                <img src="/images/lights-(2).jpg" alt="אפקטי תאורה">
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600" alt="DJ בחתונה">
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <img src="/images/lights-(3).jpg" alt="תאורה צבעונית">
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600" alt="מערכת DJ">
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <img src="/images/lights-(4).jpg" alt="מערכת תאורה לאירועים">
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1504680177321-2e6a879aac86?w=600" alt="רחבת ריקודים">
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <img src="/images/lights-(5).jpg" alt="תאורת DJ">
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=600" alt="תאורה צבעונית">
+            <div class="gallery-item" onclick="openLightbox(5)">
+                <img src="/images/lights-(6).jpg" alt="אווירה ברחבה">
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600" alt="קהל רוקד">
+            <div class="gallery-item" onclick="openLightbox(6)">
+                <img src="/images/lights-(7).jpg" alt="תאורת אווירה">
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600" alt="מסיבה">
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <img src="/images/lights-(8).jpg" alt="ציוד תאורה מקצועי">
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600" alt="ציוד DJ מקצועי">
+            <div class="gallery-item" onclick="openLightbox(8)">
+                <img src="/images/lights-(9).jpg" alt="תאורה באירוע">
             </div>
         </div>
     </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-right"></i></span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="תמונת גלריה">
+        </div>
+        <span class="lightbox-nav lightbox-next" onclick="changeSlide(1)"><i class="fas fa-chevron-left"></i></span>
+        <div class="lightbox-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">9</span>
+        </div>
+    </div>
 
     <!-- CTA Section -->
     <section class="cta-section">
@@ -562,6 +715,71 @@
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
+        });
+
+        // Lightbox functionality
+        const galleryImages = [
+            '/images/lights-(1).jpg',
+            '/images/lights-(2).jpg',
+            '/images/lights-(3).jpg',
+            '/images/lights-(4).jpg',
+            '/images/lights-(5).jpg',
+            '/images/lights-(6).jpg',
+            '/images/lights-(7).jpg',
+            '/images/lights-(8).jpg',
+            '/images/lights-(9).jpg'
+        ];
+
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const currentSlide = document.getElementById('current-slide');
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightboxImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            if (currentIndex >= galleryImages.length) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = galleryImages.length - 1;
+            }
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            lightboxImg.src = galleryImages[currentIndex];
+            currentSlide.textContent = currentIndex + 1;
+        }
+
+        // Close lightbox on backdrop click
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(1); // RTL - left arrow goes to next
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(-1); // RTL - right arrow goes to previous
+            }
         });
     </script>
 </body>

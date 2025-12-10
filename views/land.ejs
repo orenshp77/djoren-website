@@ -677,9 +677,39 @@
                 aspect-ratio: 1/1;
             }
         }
+
+        /* Top Logo */
+        .top-logo {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9997;
+        }
+
+        .top-logo img {
+            height: 60px;
+            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+            transition: all 0.3s ease;
+        }
+
+        .top-logo img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .top-logo img {
+                height: 45px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Top Logo -->
+    <div class="top-logo">
+        <img src="/images/logo-smurata.png" alt="שמורתא">
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">

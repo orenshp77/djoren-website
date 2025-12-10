@@ -678,34 +678,111 @@
             }
         }
 
-        /* Top Logo */
-        .top-logo {
+        /* Logo Header Section */
+        .logo-header {
             width: 100%;
+            padding: 30px 20px;
+            background: linear-gradient(180deg,
+                rgba(255, 107, 0, 0.15) 0%,
+                rgba(255, 140, 0, 0.08) 50%,
+                transparent 100%);
+            position: relative;
             text-align: center;
-            margin-bottom: 25px;
+            overflow: hidden;
         }
 
-        .top-logo img {
-            height: 80px;
-            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.7));
+        .logo-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150%;
+            height: 100%;
+            background: radial-gradient(ellipse at center top,
+                rgba(255, 107, 0, 0.2) 0%,
+                transparent 70%);
+            pointer-events: none;
+        }
+
+        .logo-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 107, 0, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(255, 140, 0, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+            animation: floatGlow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(2%, 1%) rotate(1deg); }
+            50% { transform: translate(0, 2%) rotate(0deg); }
+            75% { transform: translate(-2%, 1%) rotate(-1deg); }
+        }
+
+        .logo-header img {
+            position: relative;
+            z-index: 2;
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(255, 107, 0, 0.4))
+                    drop-shadow(0 0 60px rgba(255, 107, 0, 0.2));
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 30px rgba(255, 107, 0, 0.4))
+                        drop-shadow(0 0 60px rgba(255, 107, 0, 0.2));
+            }
+            50% {
+                filter: drop-shadow(0 0 40px rgba(255, 107, 0, 0.6))
+                        drop-shadow(0 0 80px rgba(255, 107, 0, 0.3));
+            }
+        }
+
+        .logo-header .glow-line {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(255, 107, 0, 0.8) 50%,
+                transparent 100%);
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
         }
 
         @media (max-width: 768px) {
-            .top-logo img {
-                height: 60px;
+            .logo-header {
+                padding: 20px 15px;
+            }
+            .logo-header img {
+                max-width: 200px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Logo Header -->
+    <header class="logo-header">
+        <img src="/images/big_logo-smurata.png" alt="שמורתא">
+        <div class="glow-line"></div>
+    </header>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <!-- Top Logo -->
-            <div class="top-logo">
-                <img src="/images/logo-smurata.png" alt="שמורתא">
-            </div>
-
             <div class="deal-badge fade-in">
                 <i class="fas fa-fire"></i> מבצע מיוחד למתחתנים!
             </div>

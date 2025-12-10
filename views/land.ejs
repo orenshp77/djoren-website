@@ -680,16 +680,16 @@
 
         /* Top Logo */
         .top-logo {
-            position: fixed;
-            top: 20px;
+            position: absolute;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 9997;
+            z-index: 10;
         }
 
         .top-logo img {
-            height: 60px;
-            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+            height: 80px;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.7));
             transition: all 0.3s ease;
         }
 
@@ -699,19 +699,19 @@
 
         @media (max-width: 768px) {
             .top-logo img {
-                height: 45px;
+                height: 60px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Top Logo -->
-    <div class="top-logo">
-        <img src="/images/logo-smurata.png" alt="שמורתא">
-    </div>
-
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Top Logo -->
+        <div class="top-logo">
+            <img src="/images/logo-smurata.png" alt="שמורתא">
+        </div>
+
         <div class="hero-content">
             <div class="deal-badge fade-in">
                 <i class="fas fa-fire"></i> מבצע מיוחד למתחתנים!

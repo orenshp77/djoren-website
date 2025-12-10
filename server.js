@@ -44,6 +44,11 @@ app.get('/music-production', (req, res) => {
     res.render('music-production', { title: 'DJ Oren Shaffer - יצירת מוזיקה', page: 'music-production' });
 });
 
+// Landing page - no menu
+app.get('/land', (req, res) => {
+    res.render('land', { title: 'חבילת חתונה מושלמת - DJ + הגברה + תאורה', page: 'land' });
+});
+
 app.listen(PORT, () => {
     console.log(`🎵 DJ Oren Shaffer website running at http://localhost:${PORT}`);
 });

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="חבילת חתונה מושלמת - DJ + הגברה + תאורה ב-8,500 ש״ח בלבד">
+    <title><%= title %></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/images/favicon.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('/images/lights.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .deal-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B00, #FF8C00);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255,107,0,0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(255,107,0,0.8); }
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 72px);
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            color: #FF6B00;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 4vw, 28px);
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, rgba(255,107,0,0.2), rgba(255,140,0,0.1));
+            border: 3px solid #FF6B00;
+            border-radius: 20px;
+            padding: 30px 50px;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .price-old {
+            font-size: 24px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: line-through;
+            margin-bottom: 10px;
+        }
+
+        .price-new {
+            font-size: clamp(48px, 10vw, 80px);
+            font-weight: 900;
+            color: #FF6B00;
+            text-shadow: 0 0 30px rgba(255,107,0,0.5);
+        }
+
+        .price-new span {
+            font-size: 0.5em;
+            color: white;
+        }
+
+        .includes-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .include-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+
+        .include-item i {
+            color: #FF6B00;
+            font-size: 24px;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #FF6B00;
+        }
+
+        .benefits-text {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(255,107,0,0.1), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,107,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: #FF6B00;
+            box-shadow: 0 20px 40px rgba(255,107,0,0.2);
+        }
+
+        .benefit-card i {
+            font-size: 48px;
+            color: #FF6B00;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 20px;
+            background: #0a0a0a;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(255,107,0,0.2), rgba(0,0,0,0.9));
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(28px, 5vw, 42px);
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-family: 'Heebo', sans-serif;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B00, #FF8C00);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255,107,0,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255,107,0,0.6);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37,211,102,0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #FF6B00;
+        }
+
+        .btn-secondary:hover {
+            background: #FF6B00;
+            transform: translateY(-5px);
+        }
+
+        .contact-name {
+            font-size: 22px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 20px;
+        }
+
+        .contact-name strong {
+            color: #FF6B00;
+        }
+
+        /* Footer */
+        .land-footer {
+            padding: 30px 20px;
+            text-align: center;
+            background: #000;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .price-box {
+                padding: 20px 30px;
+            }
+
+            .includes-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .include-item {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 350px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="deal-badge fade-in">
+                <i class="fas fa-fire"></i> מבצע מיוחד למתחתנים!
+            </div>
+
+            <h1 class="fade-in delay-1">
+                חבילת חתונה <span>מושלמת</span>
+            </h1>
+
+            <p class="hero-subtitle fade-in delay-2">
+                DJ מקצועי + הגברה איכותית + תאורה מרהיבה
+            </p>
+
+            <div class="price-box fade-in delay-3">
+                <div class="price-old">במקום 12,000 ש"ח</div>
+                <div class="price-new">8,500<span> ש"ח</span></div>
+            </div>
+
+            <div class="includes-list fade-in delay-4">
+                <div class="include-item">
+                    <i class="fas fa-headphones-alt"></i>
+                    <span>DJ מקצועי</span>
+                </div>
+                <div class="include-item">
+                    <i class="fas fa-volume-up"></i>
+                    <span>מערכת הגברה</span>
+                </div>
+                <div class="include-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>תאורת אווירה</span>
+                </div>
+                <div class="include-item">
+                    <i class="fas fa-microphone"></i>
+                    <span>מיקרופונים</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <h2 class="section-title">למה <span>חבילה משולבת</span> משתלמת?</h2>
+
+        <p class="benefits-text">
+            כשאתם מזמינים DJ, הגברה ותאורה מספק אחד - אתם חוסכים כסף, זמן וכאב ראש.
+            במקום לתאם בין 3 ספקים שונים, יש לכם איש קשר אחד שאחראי על הכל.
+            התוצאה? אירוע חלק, מקצועי ובלי הפתעות.
+        </p>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-piggy-bank"></i>
+                <h3>חיסכון משמעותי</h3>
+                <p>במקום לשלם ל-3 ספקים נפרדים (DJ כ-5,000 ש"ח, הגברה כ-4,000 ש"ח, תאורה כ-3,000 ש"ח) - אתם מקבלים הכל ב-8,500 ש"ח בלבד!</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="fas fa-sync-alt"></i>
+                <h3>סנכרון מושלם</h3>
+                <p>התאורה מסונכרנת למוזיקה, ההגברה מכוילת בדיוק כמו שצריך - הכל עובד יחד בהרמוניה מושלמת.</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="fas fa-user-check"></i>
+                <h3>איש קשר אחד</h3>
+                <p>במקום לרוץ בין ספקים, יש לכם נציג אחד שאחראי על הכל. פחות סטרס, יותר שקט נפשי.</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="fas fa-cog"></i>
+                <h3>התקנה מהירה</h3>
+                <p>צוות אחד שמגיע, מתקין הכל ומוודא שהאירוע שלכם יתחיל בזמן ובלי עיכובים.</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="fas fa-star"></i>
+                <h3>ניסיון עשיר</h3>
+                <p>מאות אירועים מוצלחים, אלפי זוגות מרוצים. אנחנו יודעים בדיוק איך להרים לכם את הרחבה!</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="fas fa-music"></i>
+                <h3>מוזיקה מותאמת</h3>
+                <p>פלייליסט מותאם אישית לפי הטעם שלכם - משירי הכניסה ועד סיום האירוע.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <h2 class="section-title">הציוד וה<span>אווירה</span> שלנו</h2>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600" alt="הגברה ותאורה לאירועים">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600" alt="תאורת אירועים">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600" alt="DJ בחתונה">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600" alt="מערכת DJ">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1504680177321-2e6a879aac86?w=600" alt="רחבת ריקודים">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=600" alt="תאורה צבעונית">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600" alt="קהל רוקד">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600" alt="מסיבה">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600" alt="ציוד DJ מקצועי">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>רוצים לראות את ה-DJ בפעולה?</h2>
+
+        <div class="cta-buttons">
+            <a href="https://djorens.co.il/" class="btn btn-primary">
+                <i class="fas fa-play-circle"></i>
+                לאתר הראשי
+            </a>
+        </div>
+
+        <h2 style="margin-top: 50px;">מוכנים להזמין?</h2>
+        <p style="font-size: 18px; margin-bottom: 30px; color: rgba(255,255,255,0.7);">
+            צרו קשר עכשיו וקבלו את המבצע המיוחד!
+        </p>
+
+        <div class="cta-buttons">
+            <a href="https://wa.me/972549408706?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%93%D7%A3%20%D7%94%D7%97%D7%91%D7%99%D7%9C%D7%94%20%D7%9C%D7%9E%D7%AA%D7%97%D7%AA%D7%A0%D7%99%D7%9D" target="_blank" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                שלחו וואטסאפ
+            </a>
+            <a href="https://djorens.co.il/contact" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i>
+                צרו קשר
+            </a>
+        </div>
+
+        <p class="contact-name">
+            <strong>עומרי שמורתה</strong> - נציג מכירות
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="land-footer">
+        <p>&copy; 2024 DJ Oren Shefer. כל הזכויות שמורות.</p>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.benefit-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

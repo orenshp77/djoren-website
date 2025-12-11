@@ -48,6 +48,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Main CSS -->
     <link rel="stylesheet" href="/css/style.css">
 
@@ -181,6 +184,159 @@
         .accessibility-widget { left: 10px; bottom: 80px; }
         .accessibility-btn { width: 45px; height: 45px; }
         .accessibility-panel { width: 260px; }
+    }
+
+    /* WhatsApp Share Button */
+    .floating-share {
+        position: fixed;
+        left: 20px;
+        bottom: 140px;
+        z-index: 99999;
+        font-family: 'Heebo', sans-serif;
+    }
+    .floating-share-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #25D366, #128C7E);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s ease;
+    }
+    .floating-share-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+    .floating-share-btn i {
+        color: white;
+        font-size: 24px;
+    }
+    .share-popup {
+        position: fixed;
+        bottom: 200px;
+        left: 20px;
+        width: 30%;
+        min-width: 280px;
+        max-width: 350px;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        border-radius: 20px;
+        padding: 25px;
+        display: none;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+        border: 1px solid rgba(37, 211, 102, 0.3);
+        z-index: 100000;
+    }
+    .share-popup.active {
+        display: block;
+        animation: popupSlide 0.3s ease;
+    }
+    @keyframes popupSlide {
+        from { opacity: 0; transform: translateY(20px) scale(0.9); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .share-popup-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(37, 211, 102, 0.3);
+    }
+    .share-popup-header h3 {
+        color: #25D366;
+        margin: 0;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .share-popup-close {
+        background: none;
+        border: none;
+        color: #888;
+        font-size: 24px;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+    .share-popup-close:hover {
+        color: #fff;
+    }
+    .share-option {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        margin: 10px 0;
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        color: white;
+    }
+    .share-option:hover {
+        background: rgba(37, 211, 102, 0.2);
+        transform: translateX(-5px);
+    }
+    .share-option i {
+        font-size: 28px;
+        color: #25D366;
+        width: 40px;
+        text-align: center;
+    }
+    .share-option-text {
+        flex: 1;
+    }
+    .share-option-text strong {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 3px;
+    }
+    .share-option-text span {
+        font-size: 12px;
+        color: #888;
+    }
+    .share-site-preview {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background: rgba(0,0,0,0.3);
+        border-radius: 10px;
+        margin-top: 15px;
+    }
+    .share-site-preview img {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+    .share-site-preview-text {
+        flex: 1;
+    }
+    .share-site-preview-text strong {
+        display: block;
+        font-size: 14px;
+        color: #FF6B00;
+    }
+    .share-site-preview-text span {
+        font-size: 11px;
+        color: #666;
+    }
+    @media (max-width: 768px) {
+        .floating-share { left: 10px; bottom: 140px; }
+        .floating-share-btn { width: 45px; height: 45px; }
+        .share-popup {
+            width: calc(100% - 40px);
+            left: 20px;
+            right: 20px;
+            min-width: auto;
+            max-width: none;
+        }
     }
     </style>
 </head>
@@ -327,3 +483,118 @@
             </a>
         </div>
     </div>
+
+    <!-- Floating WhatsApp Share Button -->
+    <div class="floating-share">
+        <button class="floating-share-btn" onclick="toggleSharePopup()" aria-label="שתפו בוואטסאפ" title="שתפו בוואטסאפ">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+    </div>
+
+    <!-- Share Popup -->
+    <div class="share-popup" id="sharePopup">
+        <div class="share-popup-header">
+            <h3><i class="fab fa-whatsapp"></i> שתפו את האתר</h3>
+            <button class="share-popup-close" onclick="toggleSharePopup()">&times;</button>
+        </div>
+
+        <!-- Option 1: Share to WhatsApp contacts -->
+        <a href="whatsapp://send?text=%F0%9F%8E%B5%20DJ%20Oren%20Shaffer%20-%20%D7%93%D7%99%D7%92%27%D7%99%D7%99%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99%20%D7%9C%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D%0A%D7%97%D7%AA%D7%95%D7%A0%D7%95%D7%AA%20%7C%20%D7%9E%D7%A1%D7%99%D7%91%D7%95%D7%AA%20%7C%20%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%20%D7%97%D7%91%D7%A8%D7%94%0Ahttps://djorens.co.il/" class="share-option">
+            <i class="fab fa-whatsapp"></i>
+            <div class="share-option-text">
+                <strong>שתפו באנשי קשר</strong>
+                <span>שלחו לחברים מרשימת אנשי הקשר</span>
+            </div>
+        </a>
+
+        <!-- Option 2: Send to specific number -->
+        <div class="share-option" onclick="openShareToNumber()">
+            <i class="fas fa-user-plus"></i>
+            <div class="share-option-text">
+                <strong>שלחו למספר ספציפי</strong>
+                <span>הזינו מספר טלפון ושתפו</span>
+            </div>
+        </div>
+
+        <!-- Site Preview -->
+        <div class="share-site-preview">
+            <img src="/images/btn_phone.png" alt="DJ Oren Shaffer">
+            <div class="share-site-preview-text">
+                <strong>DJ Oren Shaffer</strong>
+                <span>djorens.co.il</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Toggle Share Popup
+    function toggleSharePopup() {
+        const popup = document.getElementById('sharePopup');
+        popup.classList.toggle('active');
+    }
+
+    // Close popup when clicking outside
+    document.addEventListener('click', function(e) {
+        const popup = document.getElementById('sharePopup');
+        const shareBtn = document.querySelector('.floating-share-btn');
+        if (popup && !popup.contains(e.target) && !shareBtn.contains(e.target)) {
+            popup.classList.remove('active');
+        }
+    });
+
+    // Open SweetAlert for specific number share
+    function openShareToNumber() {
+        toggleSharePopup(); // Close the popup first
+
+        Swal.fire({
+            title: '<i class="fab fa-whatsapp" style="color: #25D366;"></i> שתפו למספר ספציפי',
+            html: `
+                <div style="text-align: right; direction: rtl;">
+                    <label style="display: block; margin-bottom: 10px; color: #666;">הזינו מספר טלפון:</label>
+                    <input type="tel" id="sharePhoneNumber" class="swal2-input" placeholder="050-0000000" dir="ltr" style="text-align: left;">
+                    <p style="font-size: 12px; color: #888; margin-top: 10px;">
+                        <i class="fas fa-info-circle"></i> ניתן לשלוח גם למספרים שאינם באנשי הקשר
+                    </p>
+                </div>
+            `,
+            showCancelButton: true,
+            confirmButtonText: '<i class="fab fa-whatsapp"></i> שלח בוואטסאפ',
+            cancelButtonText: 'ביטול',
+            confirmButtonColor: '#25D366',
+            cancelButtonColor: '#666',
+            background: '#1a1a1a',
+            color: '#fff',
+            customClass: {
+                popup: 'share-swal-popup',
+                title: 'share-swal-title',
+                htmlContainer: 'share-swal-html'
+            },
+            preConfirm: () => {
+                const phone = document.getElementById('sharePhoneNumber').value;
+                if (!phone) {
+                    Swal.showValidationMessage('אנא הזינו מספר טלפון');
+                    return false;
+                }
+                return phone;
+            }
+        }).then((result) => {
+            if (result.isConfirmed && result.value) {
+                let phone = result.value.replace(/[-\s]/g, ''); // Remove dashes and spaces
+
+                // Convert Israeli format to international
+                if (phone.startsWith('0')) {
+                    phone = '972' + phone.substring(1);
+                } else if (!phone.startsWith('972') && !phone.startsWith('+972')) {
+                    phone = '972' + phone;
+                }
+                phone = phone.replace('+', '');
+
+                // Create WhatsApp message
+                const message = encodeURIComponent('🎵 DJ Oren Shaffer - דיג\'יי מקצועי לאירועים\nחתונות | מסיבות | אירועי חברה\nhttps://djorens.co.il/');
+
+                // Open WhatsApp with the number
+                window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+            }
+        });
+    }
+    </script>

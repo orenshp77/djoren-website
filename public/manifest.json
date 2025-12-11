@@ -1,0 +1,17 @@
+{
+  "name": "DJ Oren Shaffer - דיג'יי אורן שפר",
+  "short_name": "DJ Oren",
+  "description": "DJ מקצועי לאירועים, חתונות ומסיבות. חווית מוזיקה בלתי נשכחת",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#FF6B00",
+  "icons": [
+    {
+      "src": "/images/btn_phone.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

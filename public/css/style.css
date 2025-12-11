@@ -2487,6 +2487,11 @@ html, body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Remove underline from social icons in nav */
+.nav-social-btn::before {
+    display: none !important;
+}
+
 /* Mobile Social Icons */
 .mobile-social-icons {
     display: flex;
